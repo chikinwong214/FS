@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
+		<title>统计图表</title>	
+		
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript">
+		
+$(function () {
+        $('#container_column').highcharts({
+            chart: {
+                type: 'column',
+				zoomType:'x'
+            },
+            title: {
+                text: '<?php echo $this->serviceId; ?>年各项目情况'
+            },			
+            xAxis: {
+                categories: 
+                             <?php
+                             	echo $this->datax;
+							 ?>
+                             				
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '（元）'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} 元</b></td></tr>',
+                footerFormat: '</table>',
+                shared: false,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0,                   
+                    dataLabels: {
+                        enabled: true                       
+						}
+                    
+                }
+            },
+            series: [
+			{
+                name: '制作费',	
+                data:[
+		                <?php 		                	
+		                	foreach ($this->make as $value)
+		                	{
+		                		echo $value.",";	
+		                	}
+		                ?>
+                	 ]		
+            },
+
+            {
+                name: '差旅费',	
+                data:[
+		                <?php 
+		                	foreach ($this->travel as $value)
+		                	{
+		                		echo $value.",";
+		                	}
+		                ?>
+                	]	
+            },
+
+            {
+                name: '餐费',	
+                data:[
+		                <?php 
+							foreach ($this->meals as $value)
+		                	{
+		                		echo $value.",";
+		                	}
+		                ?>
+                	]	
+            }			
+			]
+        });
+    });	
+
+    </script>
+	</head>
+	<body >
+	
+<script src="/js/highcharts/highcharts.js"></script>
+<script src="/js/highcharts/modules/exporting.src2.js"></script>
+<script src="/js/highcharts/themes/wosshzhb_border.js"></script>
+
+
+
+
+<div id="main" style="width:99.2%; height:100%; margin:0 auto; "> 
+	<div id="container_column" style="width:100%;height: 460px;float:left;"></div>
+</div>
+
+	</body>
+</html>

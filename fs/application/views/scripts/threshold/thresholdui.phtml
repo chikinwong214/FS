@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>
+</title>
+    <link href="/js/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" /> 
+    <link href="/js/ligerUI/skins/Gray/css/all.css" rel="stylesheet" type="text/css" /> 
+    <script src="/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/core/base.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerForm.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerDateEditor.js" type="text/javascript"></script>
+    <!--  
+    <script src="/js/ligerUI/js/plugins/ligerComboBox.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerCheckBox.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerDialog.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerRadio.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerSpinner.js" type="text/javascript"></script>
+    -->
+    <script src="/js/ligerUI/js/plugins/ligerButton.js" type="text/javascript"></script>   
+    <script src="/js/ligerUI/js/plugins/ligerTextBox.js" type="text/javascript"></script> 
+    <script src="/js/ligerUI/js/plugins/ligerTip.js" type="text/javascript"></script>
+      <script src="/js/jquery-validation/jquery.validate.min.js" type="text/javascript"></script> 
+    <script src="/js/jquery-validation/jquery.metadata.js" type="text/javascript"></script>
+    <script src="/js/jquery-validation/messages_cn.js" type="text/javascript"></script>
+     <script type="text/javascript">
+        var eee;
+        $(function ()
+        {
+            $.metadata.setType("attr", "validate");
+            var v = $("form").validate({
+                //debug: true,
+                errorPlacement: function (lable, element)
+                {
+                    if (element.hasClass("l-textarea"))
+                    {
+                        element.ligerTip({ content: lable.html(), target: element[0] }); 
+                    }
+                    else if (element.hasClass("l-text-field"))
+                    {
+                        element.parent().ligerTip({ content: lable.html(), target: element[0] });
+                    }
+                    else
+                    {
+                        lable.appendTo(element.parents("td:first").next("td"));
+                    }
+                },
+                success: function (lable)
+                {
+                    lable.ligerHideTip();
+                    lable.remove();
+                },
+                submitHandler: function ()
+                {
+                    $("form .l-text,.l-textarea").ligerHideTip();
+                    //alert("Submitted!")
+                    form1.submit();
+                }
+            });
+            $("form").ligerForm();            
+        });  
+    </script>
+     
+ <style type="text/css">
+           body{ font-size:12px;}
+        .l-table-edit {}
+        .l-table-edit-td{ padding:2px;}
+        .l-button-submit,.l-button-test{width:80px; float:left; margin-left:100px; padding-bottom:2px;}
+        .l-verify-tip{ left:230px; top:120px;}
+    </style>
+     
+     
+</head>
+
+<body style="padding:10px">
+<h1>阈值输入</h1>
+<h3>输入百分比，如30%，则输入30</h3>
+    <form name="form1" method="post"  id="form1" action="/threshold/thresholdinsert">
+        <table cellpadding="0" cellspacing="0" class="l-table-edit">
+           
+             <tr>
+                <td align="right" class="l-table-edit-td">成本:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="cost" type="text" id="cost" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['cost']*100;?>"/></td>
+                <td align="left"></td>
+            </tr>
+            
+             <tr>
+                <td align="right" class="l-table-edit-td">制作:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="make" type="text" id="make" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['make']*100;?>"/></td>
+                <td align="left"></td>
+            </tr>
+            
+            <tr>
+                <td align="right" class="l-table-edit-td">差旅:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="travel" type="text" id="travel" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['travel']*100;?>"/></td>
+                <td align="left"></td>
+            </tr>
+                              
+                
+            <tr>
+                <td align="right" class="l-table-edit-td">福利:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="welfare" type="text" id="welfare" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['welfare']*100;?>"/></td>
+                <td align="left"></td>
+            </tr>   
+                              
+                 
+            <tr>
+                <td align="right" class="l-table-edit-td">发展基金:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="fund" type="text" id="fund" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['fund']*100;?>"/></td>
+                <td align="left"></td>
+            </tr> 
+            
+             
+          	<tr>
+                <td align="right" class="l-table-edit-td">餐费:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="meals" type="text" id="meals" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['meals']*100;?>"/></td>
+                <td align="left"></td>
+            </tr>       
+          
+          
+          	<tr>
+                <td align="right" class="l-table-edit-td">教育培训费:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="education" type="text" id="education" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['education']*100;?>"/></td>
+                <td align="left"></td>
+            </tr>  
+            
+            <tr><td> &nbsp; </td></tr>
+            <tr><td>初始值（单位：元）</td></tr>
+            
+            <tr>
+                <td align="right" class="l-table-edit-td">成本初始值:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="costInitial" type="text" id="costInitial" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['costInitial'];?>"/></td>
+                <td align="left"></td>
+            </tr>
+            <tr>
+                <td align="right" class="l-table-edit-td">福利初始值:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="welfareInitial" type="text" id="welfareInitial" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['welfareInitial'];?>"/></td>
+                <td align="left"></td>
+            </tr> 
+            <tr>
+                <td align="right" class="l-table-edit-td">发展基金初始值:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="fundInitial" type="text" id="fundInitial" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['fundInitial'];?>"/></td>
+                <td align="left"></td>
+            </tr> 
+            <tr>
+                <td align="right" class="l-table-edit-td">餐费初始值:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="mealsInitial" type="text" id="mealsInitial" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['mealsInitial'];?>"/></td>
+                <td align="left"></td>
+            </tr> 
+            <tr>
+                <td align="right" class="l-table-edit-td">教育培训费初始值:</td>
+                <td align="left" style="width:160px" class="l-table-edit-td"><input name="educationInitial" type="text" id="educationInitial" validate="{required:true,number:true,min:0}" value="<?php echo $this->threshold['educationInitial'];?>"/></td>
+                <td align="left"></td>
+            </tr>   
+          
+        </table>
+ <br />
+		<input type="submit" value="提交" id="Button1" class="l-button l-button-submit" /> 
+    </form>
+   
+    
+</body>
+</html>

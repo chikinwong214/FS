@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>财务系统管理平台</title>
+	
+    <style type="text/css"> 
+        body{width:99.8%; padding:0px; margin:0 auto; padding-bottom:15px;}
+        #layout1{ width:100%;margin:0 auto; padding:0px; }  
+        .l-page-top{background:#f8f8f8;margin-bottom:0px;}           
+    </style>
+    <link href="/js/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" type="text/css" />
+    <script src="/js/jquery.min.js" type="text/javascript"></script>   
+    <script src="/js/ligerUI/js/core/base.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerLayout.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerAccordion.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerTab.js" type="text/javascript"></script>
+    <script src="/js/ligerUI/js/plugins/ligerTree.js" type="text/javascript"></script>
+	<script src="/js/indexdata.js" type="text/javascript"></script>
+    <script type="text/javascript">
+		/*var tab = null;
+        var accordion = null;
+        var tree = null;*/
+        $(function () {
+             $("#layout1").ligerLayout({ leftWidth: 190, height: 800});        
+
+             $("#accordion1").ligerAccordion(
+             {
+                 height: 400
+				 //changeHeightOnResize:true
+             });	
+			
+		});
+		
+        var navtab = null;
+         $(function () {
+             $("#navtab1").ligerTab();
+             navtab = $("#navtab1").ligerGetTabManager();
+         });       
+
+
+    </script> 
+</head>
+<body>
+    <div id="layout1">
+        <div position="left" title="财务系统平台导航" >
+            <div id="accordion1"> 
+                <div title="系统首页" style="padding:3px 10px">         
+       				<ul>
+                        <li onClick="addTab_click('财务系统首页')" style=" cursor:pointer">财务系统首页</li>
+						<li onClick="addTab_click('系统使用说明')" style=" cursor:pointer">系统使用说明</li>											
+                    </ul>
+                </div>
+				
+				<div title="查看财务情况" style="padding:3px 10px">  
+					<ul>       
+       					<!--  <li onClick="addTab_click('添加财务报账')" style=" cursor:pointer">添加财务报账</li>	-->
+       					<!-- <li onClick="addTab_click('查看财务情况')" style=" cursor:pointer">查看财务情况</li>	-->
+       					<li onClick="addTab_click('查看成本情况')" style=" cursor:pointer">查看成本情况</li>
+       					<li onClick="addTab_click('查看福利情况')" style=" cursor:pointer">查看福利情况</li>
+       					<li onClick="addTab_click('查看发展基金情况')" style=" cursor:pointer">查看发展基金情况</li>
+       					<li onClick="addTab_click('查看餐费情况')" style=" cursor:pointer">查看餐费情况</li>
+       					<li onClick="addTab_click('查看教育培训情况')" style=" cursor:pointer">查看教育培训情况</li>
+       					<li onClick="addTab_click('查看年度总产值情况')" style=" cursor:pointer">查看年度总产值情况</li>
+       					<li onClick="addTab_click('查看合同签订情况')" style=" cursor:pointer">查看合同签订情况</li>
+       					<li onClick="addTab_click('查看设计费收取情况')" style=" cursor:pointer">查看设计费收取情况</li>
+       					<li onClick="addTab_click('统计开支情况')" style=" cursor:pointer">统计开支情况</li>	
+       					<li onClick="addTab_click('统计开支图表')" style=" cursor:pointer">统计开支图表</li>
+       					<li onClick="addTab_click('业务号统计情况')" style=" cursor:pointer">业务号统计情况</li>	  
+       					<li onClick="addTab_click('业务号统计图表')" style=" cursor:pointer">业务号统计图表</li> 	 					
+					</ul>
+                </div>
+                <div title="财务报账" style="padding:3px 10px">  
+					<ul>       
+       					
+       					<li onClick="addTab_click('成本报账')" style=" cursor:pointer">成本报账</li>
+       					<li onClick="addTab_click('福利报账')" style=" cursor:pointer">福利报账</li>
+       					<li onClick="addTab_click('发展基金报账')" style=" cursor:pointer">发展基金报账</li>
+       					<li onClick="addTab_click('餐费报账')" style=" cursor:pointer">餐费报账</li>
+       					<li onClick="addTab_click('教育培训报账')" style=" cursor:pointer">教育培训报账</li>
+       					
+					</ul>
+                </div>   
+                  
+                <?php 
+					if (99 == $this->userRight) 
+					{
+						echo '	
+			                <div title="其他数据录入" style="padding:3px 10px">  
+								<ul>       
+			       					<li onClick="addTab_click(\'阈值输入\')" style=" cursor:pointer">阈值输入</li>	
+			       					<li onClick="addTab_click(\'年度总产值输入\')" style=" cursor:pointer">年度总产值输入</li>	
+									<li onClick="addTab_click(\'设计费收入输入\')" style=" cursor:pointer">设计费收入输入</li>	
+									<li onClick="addTab_click(\'合同总额输入\')" style=" cursor:pointer">合同总额输入</li>			
+								</ul>
+			                </div> 
+		                ';
+					 }
+                ?>   
+                
+                <div title="用户管理" style="padding:3px 10px">  
+					<ul>  
+					<?php 
+					if (99 == $this->userRight) 
+					{
+						echo '<li onClick="addTab_click(\'用户管理\')" style=" cursor:pointer">用户管理</li>';
+					}
+					?>     
+       					
+       					<li onClick="addTab_click('修改密码')" style=" cursor:pointer">修改密码</li>		       					   										
+					</ul>
+                </div>               
+       
+            </div>  
+    
+        <div style="display:none;"></div><br/>
+        </div>
+        <div position="center" >           
+            <div id="navtab1" style="width: 100%;height:100%;overflow:hidden; border:0px solid #A3C0E8;background-color:#fff; ">
+                <div tabid="home" title="财务系统首页" lselected="true"  style="height:640px" >
+                <iframe id="top-left-frame" frameborder=0  src="/main/main" width="100%" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+      <div position="top" style="background-image:url('Images/logo.png'); background-repeat:no-repeat; height:80px;"><div align="right" style=" margin-top:60px"><table><tr align="left"><td width="140px"><?php echo"登陆用户：$this->loginuser";?></td><td width="220px">登陆时间：<?php echo $this->date;?></td><td width="50px"><a href="/login/logout" style="text-decoration:none" target="_top">退出</a></td></tr></table></div></div>
+        <div position="bottom">
+		<div style="text-align:center;">华南理工大学电子与信息学院@COPY RIGHT ALL RESERVED</div>
+		</div>
+    </div> 
+
+</body>
+</html>

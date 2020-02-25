@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>用户登录</title>
+<style>
+
+</style>
+</head>
+<body >
+<center>
+<h1>登录入口</h1>
+<form action="/login/login" method = "post">
+	<table>
+		<tr>
+		<td>用户id:</td>
+		<td><input type="text" name="user"/></td>
+		</tr>
+		
+		<tr>
+		<td>用户密码:</td>
+		<td><input type="password" name="pwd"/></td>
+		</tr>
+		
+		<tr>
+		<td><input type="submit" value="登录" /></td>
+		<td><input type="reset" value="重新填写"/></td>
+		</tr>
+	</table>
+</form>
+
+<?php 
+	echo $this->err;
+?>
+</center>
+</body>
+</html>
+
+
+
+</html>
